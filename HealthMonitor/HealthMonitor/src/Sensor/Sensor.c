@@ -1,6 +1,6 @@
 /**************************************************************************//**
-* @file      main.c
-* @brief     Main application file
+* @file      Sensor.c
+* @brief     File with common sensor functions
 * @author    Adi
 * @date      2023-12-14
 
@@ -10,7 +10,8 @@
 * Includes
 ******************************************************************************/
 #include <asf.h>
-#include "Sensor/Sensor.h"
+#include "Sensor.h"
+#include "./Buzzer/Buzzer.h"
 
 /******************************************************************************
 * Defines
@@ -39,19 +40,8 @@
 * @return		Return 0, code shouldn't ideally exit this function
 * @note         
 *****************************************************************************/
-int main (void)
-{
-	system_init();
-	/* Insert application code here, after the board has been initialized. */
-	Sensor_Initialize();
-	/* This skeleton code simply sets the LED to the state of the button. */
-	while (1) {
-		/* Is button pressed? */
-		port_pin_set_output_level(BUZZER_PIN, LED_0_ACTIVE);
-		delay_ms(500);
-		port_pin_set_output_level(BUZZER_PIN, !LED_0_ACTIVE);
-		delay_ms(500);
-	}
-	
-	return 0;
+bool Sensor_Initialize(void) {
+	/* Buzzer Initialize */
+	Buzzer_Initialize();	
+	return true;
 }

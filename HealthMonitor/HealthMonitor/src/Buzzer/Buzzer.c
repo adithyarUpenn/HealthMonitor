@@ -1,6 +1,6 @@
 /**************************************************************************//**
-* @file      main.c
-* @brief     Main application file
+* @file      Buzzer.c
+* @brief     Buzzer control functions belong here
 * @author    Adi
 * @date      2023-12-14
 
@@ -11,6 +11,7 @@
 ******************************************************************************/
 #include <asf.h>
 #include "Sensor/Sensor.h"
+#include "Buzzer.h"
 
 /******************************************************************************
 * Defines
@@ -30,28 +31,22 @@
 
 
 /**************************************************************************//**
-* @fn		int main (void)
-* @brief	Main function. Program starts here
-* @details 	Initialization and scheduling implemented
+* @fn		bool Buzzer_Initialize(void)
+* @brief	Initialize Buzzer
                 				
 * @param[in]	N/A
 * @param[out]	N/A
-* @return		Return 0, code shouldn't ideally exit this function
+* @return		Return true
 * @note         
 *****************************************************************************/
-int main (void)
-{
-	system_init();
-	/* Insert application code here, after the board has been initialized. */
-	Sensor_Initialize();
-	/* This skeleton code simply sets the LED to the state of the button. */
-	while (1) {
-		/* Is button pressed? */
-		port_pin_set_output_level(BUZZER_PIN, LED_0_ACTIVE);
-		delay_ms(500);
-		port_pin_set_output_level(BUZZER_PIN, !LED_0_ACTIVE);
-		delay_ms(500);
-	}
+bool Buzzer_Initialize(void) {
+	struct port_config pin_conf;
+	port_get_config_defaults(&pin_conf);
+
+	/* Configure LEDs as outputs, turn them off */
+	pin_conf.direction  = PORT_PIN_DIR_OUTPUT;
+	port_pin_set_config(BUZZER_PIN, &pin_conf);
+	port_pin_set_output_level(BUZZER_PIN, LED_0_INACTIVE);
 	
-	return 0;
+	return true;
 }
