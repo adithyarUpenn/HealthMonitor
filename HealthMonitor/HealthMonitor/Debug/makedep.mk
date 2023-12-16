@@ -2,7 +2,25 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\ASF\sam0\drivers\sercom\i2c\i2c_sam0\i2c_master.c
+
+src\ASF\sam0\drivers\sercom\i2c\i2c_sam0\i2c_master_interrupt.c
+
+src\ASF\sam0\drivers\sercom\sercom.c
+
+src\ASF\sam0\drivers\sercom\sercom_interrupt.c
+
+src\ASF\sam0\drivers\sercom\usart\usart.c
+
+src\ASF\sam0\drivers\sercom\usart\usart_interrupt.c
+
+src\HRM\HRM.c
+
 src\Sensor\Sensor.c
+
+src\SerialConsole\circular_buffer.c
+
+src\SerialConsole\SerialConsole.c
 
 src\ASF\common2\services\delay\sam0\cycle_counter.c
 

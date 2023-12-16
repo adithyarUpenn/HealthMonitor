@@ -1,6 +1,6 @@
 /**************************************************************************//**
 * @file      Buzzer.c
-* @brief     Buzzer control functions belong here
+* @brief     Buzzer control functions
 * @author    Adi
 * @date      2023-12-14
 

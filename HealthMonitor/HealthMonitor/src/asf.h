@@ -59,6 +59,24 @@
 // From module: Delay routines
 #include <delay.h>
 
+// From module: FreeRTOS - kernel 10.0.0
+#include <FreeRTOS.h>
+#include <StackMacros.h>
+#include <croutine.h>
+#include <deprecated_definitions.h>
+#include <event_groups.h>
+#include <list.h>
+#include <message_buffer.h>
+#include <mpu_wrappers.h>
+#include <portable.h>
+#include <projdefs.h>
+#include <queue.h>
+#include <semphr.h>
+#include <stack_macros.h>
+#include <stream_buffer.h>
+#include <task.h>
+#include <timers.h>
+
 // From module: Generic board support
 #include <board.h>
 
@@ -70,6 +88,19 @@
 
 // From module: Part identification macros
 #include <parts.h>
+
+// From module: SERCOM Callback API
+#include <sercom.h>
+#include <sercom_interrupt.h>
+
+// From module: SERCOM I2C - Master Mode I2C (Callback APIs)
+#include <i2c_common.h>
+#include <i2c_master.h>
+#include <i2c_master_interrupt.h>
+
+// From module: SERCOM USART - Serial Communications (Callback APIs)
+#include <usart.h>
+#include <usart_interrupt.h>
 
 // From module: SYSTEM - Clock Management for SAMD21/R21/DA/HA
 #include <clock.h>

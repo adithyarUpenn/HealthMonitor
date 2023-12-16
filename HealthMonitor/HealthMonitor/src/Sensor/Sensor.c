@@ -12,6 +12,7 @@
 #include <asf.h>
 #include "Sensor.h"
 #include "./Buzzer/Buzzer.h"
+#include "./HRM/HRM.h"
 
 /******************************************************************************
 * Defines
@@ -31,7 +32,7 @@
 
 
 /**************************************************************************//**
-* @fn		int main (void)
+* @fn		bool Sensor_Initialize(void)
 * @brief	Main function. Program starts here
 * @details 	Initialization and scheduling implemented
                 				
@@ -43,5 +44,9 @@
 bool Sensor_Initialize(void) {
 	/* Buzzer Initialize */
 	Buzzer_Initialize();	
+
+    /* Heart Rate Monitor Initialize */
+    HRM_Initialize();
+
 	return true;
 }

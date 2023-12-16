@@ -11,6 +11,7 @@
 ******************************************************************************/
 #include <asf.h>
 #include "Sensor/Sensor.h"
+#include "SerialConsole/SerialConsole.h"
 
 /******************************************************************************
 * Defines
@@ -23,7 +24,8 @@
 /******************************************************************************
 * Forward Declarations
 ******************************************************************************/
-
+void vApplicationDaemonTaskStartupHook (void *ucParameterToPass);
+void vApplicationMallocFailedHook(void);
 /******************************************************************************
 * Callback Functions
 ******************************************************************************/
@@ -44,14 +46,87 @@ int main (void)
 	system_init();
 	/* Insert application code here, after the board has been initialized. */
 	Sensor_Initialize();
+	
+	InitializeSerialConsole();
+	
+	SerialConsoleWriteString("ESE516 - CLI and Debug Logger\r\n");
 	/* This skeleton code simply sets the LED to the state of the button. */
 	while (1) {
-		/* Is button pressed? */
-		port_pin_set_output_level(BUZZER_PIN, LED_0_ACTIVE);
-		delay_ms(500);
-		port_pin_set_output_level(BUZZER_PIN, !LED_0_ACTIVE);
-		delay_ms(500);
+		
+		//SerialConsoleWriteString("ESE516 - CLI and Debug Logger\r\n");
+		if(port_pin_get_input_level(HRM_LO_POS_CONNECT)) {
+			port_pin_set_output_level(LED_0_PIN, LED_0_ACTIVE);
+			port_pin_set_output_level(BUZZER_PIN, LED_0_ACTIVE);
+		} else {
+			port_pin_set_output_level(LED_0_PIN, !LED_0_ACTIVE);
+			port_pin_set_output_level(BUZZER_PIN, LED_0_ACTIVE);
+		}
+		//port_pin_set_output_level(LED_0_PIN, LED_0_ACTIVE);
+		//delay_ms(500);
+		//port_pin_set_output_level(LED_0_PIN, !LED_0_ACTIVE);
+		//delay_ms(500);
 	}
 	
 	return 0;
+}
+
+/**************************************************************************//**
+* function          StartTasks
+* @brief            Initialize application tasks in this function
+* @details
+* @param[in]        None
+* @return           None
+*****************************************************************************/
+static void StartTasks(void)
+{
+
+
+// snprintf(bufferPrint, 64, "Heap before starting tasks: %d\r\n", xPortGetFreeHeapSize());
+// SerialConsoleWriteString(bufferPrint);
+
+// //Initialize Tasks here
+
+// if (xTaskCreate(vCommandConsoleTask, "CLI_TASK", CLI_TASK_SIZE, NULL, CLI_PRIORITY, &cliTaskHandle) != pdPASS) {
+// SerialConsoleWriteString("ERR: CLI task could not be initialized!\r\n");
+// }
+
+// snprintf(bufferPrint, 64, "Heap after starting CLI: %d\r\n", xPortGetFreeHeapSize());
+// SerialConsoleWriteString(bufferPrint);
+
+}
+
+
+/**************************************************************************/ /**
+* function          DaemonTask
+* @brief            Initialization code for all subsystems that require FreeRToS
+* @details			This function is called from the FreeRToS timer task. Any code
+*					here will be called before other tasks are initialized.
+* @param[in]        None
+* @return           None
+*****************************************************************************/
+
+void vApplicationDaemonTaskStartupHook (void *ucParameterToPass) //vApplicationDaemonTaskStartupHook()
+{
+
+// //CODE HERE: Initialize any HW here
+
+
+// //Initialize tasks
+// StartTasks();
+
+
+}
+
+
+
+void vApplicationMallocFailedHook(void)
+{
+// SerialConsoleWriteString("Error on memory allocation on FREERTOS!\r\n");
+// while(1);
+// }
+
+// void vApplicationStackOverflowHook(void)
+// {
+// SerialConsoleWriteString("Error on stack overflow on FREERTOS!\r\n");
+// while(1);
 }
