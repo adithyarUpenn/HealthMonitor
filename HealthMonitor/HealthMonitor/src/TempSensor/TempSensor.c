@@ -1,34 +1,20 @@
 /**************************************************************************//**
-* @file      Sensor.h
-* @brief     File with common sensor functions
+* @file      TempSensor.c
+* @brief     Temperature Sensor Control
 * @author    Adi
-* @date      2023-12-14
+* @date      2023-12-15
 
 ******************************************************************************/
-
-#ifndef SENSOR_H_
-#define SENSOR_H_
 
 /******************************************************************************
 * Includes
 ******************************************************************************/
 #include <asf.h>
+#include "Sensor/Sensor.h"
+#include "Buzzer.h"
 
 /******************************************************************************
 * Defines
-******************************************************************************/
-// Buzzer
-#define BUZZER_PIN                  PIN_PA11
-
-// Heart Rate Monitor
-#define HRM_LO_POS_CONNECT          PIN_PA08
-#define HRM_INPUT_CONNECT           PIN_PA09
-#define HRM_LO_NEG_CONNECT          PIN_PA10
-
-// Temperature Sensor
-#define TEMP_SENSOR_PIN             PIN_PA11
-/******************************************************************************
-* Function Prototypes
 ******************************************************************************/
 
 /******************************************************************************
@@ -36,9 +22,31 @@
 ******************************************************************************/
 
 /******************************************************************************
+* Forward Declarations
+******************************************************************************/
+
+/******************************************************************************
 * Callback Functions
 ******************************************************************************/
 
-bool Sensor_Initialize(void);
 
-#endif /* SENSOR_H_ */
+/**************************************************************************//**
+* @fn		bool TempSensor_Initialize(void)
+* @brief	Initialize Temperature sensor
+                				
+* @param[in]	N/A
+* @param[out]	N/A
+* @return		Return true
+* @note         
+*****************************************************************************/
+bool Buzzer_Initialize(void) {
+	struct port_config pin_conf;
+	port_get_config_defaults(&pin_conf);
+
+	/* Configure LEDs as outputs, turn them off */
+	pin_conf.direction  = PORT_PIN_DIR_INPUT;
+    pin_conf.input_pull  = 	SYSTEM_PINMUX_PIN_PULL_NONE;
+	port_pin_set_config(TEMP_SENSOR_PIN, &pin_conf);
+	
+	return true;
+}

@@ -1,32 +1,23 @@
 /**************************************************************************//**
-* @file      Sensor.h
-* @brief     File with common sensor functions
+* @file      TempSensor.h
+* @brief     Temperature Sensor Control
 * @author    Adi
-* @date      2023-12-14
+* @date      2023-12-15
 
 ******************************************************************************/
 
-#ifndef SENSOR_H_
-#define SENSOR_H_
+#ifndef TEMPSENSOR_H_
+#define TEMPSENSOR_H_
 
 /******************************************************************************
 * Includes
 ******************************************************************************/
-#include <asf.h>
+
 
 /******************************************************************************
 * Defines
 ******************************************************************************/
-// Buzzer
-#define BUZZER_PIN                  PIN_PA11
 
-// Heart Rate Monitor
-#define HRM_LO_POS_CONNECT          PIN_PA08
-#define HRM_INPUT_CONNECT           PIN_PA09
-#define HRM_LO_NEG_CONNECT          PIN_PA10
-
-// Temperature Sensor
-#define TEMP_SENSOR_PIN             PIN_PA11
 /******************************************************************************
 * Function Prototypes
 ******************************************************************************/
@@ -39,6 +30,7 @@
 * Callback Functions
 ******************************************************************************/
 
-bool Sensor_Initialize(void);
+bool TempSensor_Initialize(void);
 
-#endif /* SENSOR_H_ */
+
+#endif /* TEMPSENSOR_H_ */
